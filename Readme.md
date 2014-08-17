@@ -15,7 +15,7 @@ So here's how it works. Say I have a JavaScript class, like this:
         },
 
         changeLinkColor: function(color) {
-            this.$('a').css('color': color);
+            this.$('a').css('color', color);
         }
     });
 
@@ -30,15 +30,16 @@ Then all I need to do is this (it even comes with default options!):
 
 But... maybe I don't want to expose all of the methods of MyClass to the plugin? In that case, you can throw in an extra argument, to define the plugin's interface and how it behaves:
 
-    $.makePlugin('myPlugin', MyClass, {defaultOption: 'foo'}, {
-        makeLinksRed: function($element) {
+    $.makePlugin('myPlugin', MyClass, {linkColor: 'red'}, {
+        colorLinks: function($element) {
             var pluginInstance = $element.data('myPlugin');
-            return pluginInstance.changeLinkColor('red');
+            return pluginInstance.changeLinkColor(pluginInstance.options.linkColor);
         }
     });
 
 This will now only let this method be called:
 
-    $('#someElementByID').myPlugin('makeLinksRed');
+    $('#someElementByID').myPlugin({linkColor: 'green'});
+    $('#someElementByID').myPlugin('colorLinks');
 
 That's about all there is to it folks!

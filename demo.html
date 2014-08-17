@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <span id="someElement"><a href="#">Some Link</a></span>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="jQuery.makePlugin.js"></script>
+    <script>
+
+      var MyClass = function($container, options) {
+        this.$container = $container;
+        this.options = options;
+      };
+
+      $.extend(MyClass.prototype, {
+        $: function(selector) {
+          // Nifty this.$() shortcut to look up queries inside just this element
+          return this.$container.find(selector);
+        },
+
+        changeLinkColor: function(color) {
+          this.$('a').css('color', color);
+        }
+      });
+
+      $.makePlugin('myPlugin', MyClass, {linkColor: 'red'}, {
+        colorLinks: function($element) {
+          var pluginInstance = $element.data('myPlugin');
+          return pluginInstance.changeLinkColor(pluginInstance.options.linkColor);
+        }
+      });
+
+      $('#someElement')
+        .myPlugin({linkColor: 'green'})
+        .myPlugin('colorLinks')
+      ;
+    </script>
+  </body>
+</html>
