@@ -39,7 +39,7 @@
                     }
                 });
 
-                if (returnVal) {
+                if (returnVal || returnVal === false) {
                     // If a value is returned, it's non-chaining
                     return returnVal;
                 }
