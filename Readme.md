@@ -45,4 +45,4 @@ This will now only let this method be called:
 That's about all there is to it folks!
 
 
-Also check out: [https://github.com/desandro/jquery-bridget](jQuery-bridget) which is kind of similar.
+Also check out: [jQuery-bridget](https://github.com/desandro/jquery-bridget) which is kind of similar.
