@@ -43,3 +43,6 @@ This will now only let this method be called:
     $('#someElementByID').myPlugin('colorLinks');
 
 That's about all there is to it folks!
+
+
+Also check out: [https://github.com/desandro/jquery-bridget](jQuery-bridget) which is kind of similar.
