@@ -24,8 +24,10 @@
 
       $.makePlugin('myPlugin', MyClass, {linkColor: 'red'}, {
         colorLinks: function($element) {
+          // same as "this"
           var pluginInstance = $element.data('myPlugin');
-          return pluginInstance.changeLinkColor(pluginInstance.options.linkColor);
+
+          return this.changeLinkColor(this.options.linkColor);
         }
       });
 

@@ -30,12 +30,12 @@
                 returnVal = null;
                 this.each(function(i, elt) {
                     $elt = $(elt);
+                    instance = $elt.data(pluginName);
                     if ($[pluginName]) {
                         unshift.call(args, $elt);
-                        returnVal = $[pluginName][method].apply($elt, args);
+                        returnVal = $[pluginName][method].apply(instance, args);
                     } else {
-                        instance = $elt.data(pluginName);
-                        instance[method].apply(instance, args);
+                        returnVal = instance[method].apply(instance, args);
                     }
                 });
 

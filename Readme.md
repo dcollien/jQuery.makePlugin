@@ -1,7 +1,7 @@
 # JQuery.makePlugin
-## Generalising the way I like to make jQuery plugins
+## Easily build jQuery plugins out of constructors
 
-So here's how it works. Say I have a JavaScript class, like this:
+If I have a JavaScript class, like this:
 
     var MyClass = function($container, options) {
         this.$container = $container;
@@ -19,7 +19,7 @@ So here's how it works. Say I have a JavaScript class, like this:
         }
     });
 
-And I really want to make it work like this (like a standard jQuery plugin looking thing):
+And I really want to make it work like this (like a standard-looking jQuery plugin):
 
     $('#someElementByID').myPlugin({someOption: 42});
     $('#someElementByID').myPlugin('changeLinkColor', 'red');
@@ -28,19 +28,23 @@ Then all I need to do is this (it even comes with default options!):
 
     $.makePlugin('myPlugin', MyClass, {defaultOption: 'foo'});
 
-But... maybe I don't want to expose all of the methods of MyClass to the plugin? In that case, you can throw in an extra argument, to define the plugin's interface and how it behaves:
+If you don't want to expose all of the methods of MyClass to the plugin, you can throw in an extra argument to define the plugin's interface:
 
     $.makePlugin('myPlugin', MyClass, {linkColor: 'red'}, {
         colorLinks: function($element) {
-            var pluginInstance = $element.data('myPlugin');
-            return pluginInstance.changeLinkColor(pluginInstance.options.linkColor);
+            return this.changeLinkColor(this.options.linkColor);
+        },
+
+        customColor: function($element, color) {
+            return this.changeLinkColor(color);
         }
     });
 
-This will now only let this method be called:
+This will now only let these methods be exposed:
 
     $('#someElementByID').myPlugin({linkColor: 'green'});
-    $('#someElementByID').myPlugin('colorLinks');
+    $('#someElementByID').myPlugin('colorLinks'); // change to green
+    $('#someElementByID').myPlugin('customColor', '#ff00ff'); // change to magenta
 
 That's about all there is to it folks!
 
