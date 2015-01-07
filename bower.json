@@ -1,0 +1,27 @@
+{
+  "name": "jQuery.makePlugin",
+  "main": "jQuery.makePlugin.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/dcollien/jQuery.makePlugin",
+  "authors": [
+    "David Collien <david@openlearning.com>"
+  ],
+  "description": "Make a jQuery plugin out of a constructor",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jquery",
+    "plugin",
+    "constructor",
+    "prototype"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
