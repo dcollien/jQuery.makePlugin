@@ -1,7 +1,7 @@
 # JQuery.makePlugin
 ## Easily build jQuery plugins out of constructors
 
-   bower install jquery-makeplugin
+    bower install jquery-makeplugin
 
 If I have a JavaScript class, like this:
 
